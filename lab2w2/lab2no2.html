@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+    </head>
+    <body>
+        <h1>แบบฟอร์มจองทัวร์</h1> 
+        <fieldset>
+        <legend>ข้อมูลทั่วไป</legend>
+        <label>ชื่อ-สกุล:</label><br>
+        <input 
+			type="text" 
+	        name="ชื่อ-สกุล"
+			placeholder="กรอกชื่อที่อยู่"
+			pattern="[A-Za-z]{2,30}"
+	    >
+        <br><label>Email:</label><br>
+        <input 
+			type="text" 
+	        name="Email"
+			pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+	    >
+        <br><label>โทรศัพท์:</label><br>
+        <input 
+			type="text" 
+	        name="โทรศัพท์"
+			placeholder="+66"
+			pattern="[0-9]{10}"
+	    >
+        <br><label>ที่อยู่:</label><br>
+        <textarea></textarea>
+        <br><label>รหัสไปรษณีย์:</label>
+        <input 
+			type="number" 
+	        name="รหัสไปรษณีย์"
+			pattern="[0-9]{5}"
+	    >
+        <br><label>รูปผู้จอง:</label>
+        <input type="file">
+    </fieldset>
+    <fieldset>
+        <legend>ข้อมูลเข้าสู่ระบบ</s></legend>
+        <label>Username:</label><br>
+        <input 
+			type="text" 
+	        name="Username"
+			pattern="[A-Za-z_]{8,}"
+	    >
+        <br><label><i>ประกอบด้วยตัวเลข ตัวอักษรหรือ_ตั้งแต่8 ตัวขึ้นไป</i></label><br>
+        <br><label>Password:</label><br>
+        <input 
+        type="text" 
+        name="Password"
+        pattern="[A-Za-z]{8,}"
+    >
+    <br><label><i>ประกอบด้วยอะไรก็ได้8 ตัวขึ้นไป</i></label>
+    </fieldset>
+    <fieldset>
+        <legend>ข้อมูลทัวร์ที่ต้องการ</legend>
+        <label>แพคเก็จทัวร์:</label>
+        <select name="dept">
+            <option value="">--select--</option>
+            <option value="China">China</option>
+            <option value="Korea">Korea</option>
+            <option value="USA">USA</option>
+            <option value="England">England</option>
+            <option value="Poland">Poland</option>
+        </select>
+        <br><label>วันที่เดินทาง:</label>
+        <input 
+        type="date" 
+        name="วันที่เดินทาง"
+    >
+    <br><label>จำนวนผู้เดินทาง:</label>
+    <input 
+        type="number" 
+        name="จำนวนผู้เดินทาง"
+        Min="1" Max="10"
+    >
+    <br><label>เน้นการท่องเที่ยวแบบใด?</label><br>
+    <input type="radio" id="ช้อปปิ้ง" name="เน้นการท่องเที่ยวแบบใด" value="ช้อปปิ้ง">
+    <label for="ช้อปปิ้ง">ช้อปปิ้ง</label><br>
+    <input type="radio" id="ธรรมชาติ" name="เน้นการท่องเที่ยวแบบใด" value="ธรรมชาติ">
+    <label for="ธรรมชาติ">ธรรมชาติ</label><br>
+    <input type="radio" id="ทะเล" name="เน้นการท่องเที่ยวแบบใด" value="ทะเล">
+    <label for="ทะเล">ทะเล</label><br>
+    </fieldset>
+    <label>ยอมรับเงื่อนไขและข้อตกลง</label>
+    <input type="radio" id="I agree" name="เน้นการท่องเที่ยวแบบใด" value="I agree">
+    <label for="I agree">I agree</label>
+    <input type="radio" id="I dissgree" name="เน้นการท่องเที่ยวแบบใด" value="I dissgree">
+    <label for="I dissgree">I dissgree</label>
+    <input type="submit" value="จอง">
+    </form>
+    </body>
+</html>

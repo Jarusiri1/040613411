@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset='utf-8'>
+    <title>HTML Form Exercise</title>
+    </head>
+    <body>
+        <h1>เข้าสู่ระบบ</h1>
+        <form action="../lab2w2/labno3_1.html" method="post">
+        <table border="1">
+            <tr>
+                <td><label>Username:</label></td>
+                <td>
+                    <input
+                        type="text"
+                        name="Username"
+                        required
+                        autofocus
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td><label>Password:</label></td>
+                <td><input
+                        type="password"
+                        name="Password"
+                        required
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label>กรุณาพิมพ์ตามตัวเลขที่ปรากฏ:</label><br>
+                    <label>1559</label>
+                    <br><input
+                        type="text"
+                        name="1559"
+                        pattern="1559"
+                        required
+                    >
+                </td>
+            </tr>
+        </table>
+        <br><button type="submit">
+            <img src="../lab2w2/depositphotos_70366405-stock-illustration-login-button-icon.jpg" 
+            style="height: 70px; width: 70px;">
+        </button>
+    </form>
+    </body>
+</html>
