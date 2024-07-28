@@ -6,7 +6,8 @@
     background-color: grey;
     text-decoration: underline;
 }
-.id {
+#year {
     color: red;
-    font-weight: italic;
+    font-style: italic;
+    font-weight: bold;
 }
