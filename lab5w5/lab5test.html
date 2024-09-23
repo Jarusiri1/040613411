@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function add(){
+            let name = document.getElementById("name");
+            let add = document.getElementById("address");
+            let phone = document.getElementById("tel");
+            let textname = name.value;
+            let textadd = add.value;
+            let texttel = tel.value
+
+            let na = document.createElement("td");
+            na.innerHTML = textname;
+            let ad = document.createElement("td");
+            ad.innerHTML = textadd;
+            let ph =document.createElement("td");
+            ph.innerHTML = texttel;
+            let dp = document.createElement("tr");
+            let table = document.getElementById("tb");
+            table.appendChild(na);
+            table.appendChild(ad);
+            table.appendChild(ph);
+            table.appendChild(dp)
+            
+        }
+        window.onload = function(){
+            let btt = document.getElementById("bt");
+            btt.onclick = add
+        }
+       
+    </script>
+</head>
+<body>
+    ชื่อลูกค้า: <input type="text" id="name"><br>
+    ที่อยู่ : <input type="text" id="address"><br>
+    โทรศัพท์ : <input type="text" id="tel"><br>
+    <input type="button" value="เพื่ม" id="bt"><br><br>
+    <table border="1" id="tb">
+        <th>ชื่อลูกค้า</th>
+        <th>ที่อยู่</th>
+        <th>โทรศัพท์</th>
+    </table>
+</body>
+</html>
