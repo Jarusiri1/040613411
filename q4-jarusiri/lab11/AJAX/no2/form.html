@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ค้นหารายชื่อสมาชิก</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .member {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .member img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .member-name {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ค้นหารายชื่อสมาชิก</h1>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="กรอกชื่อผู้ใช้ที่ต้องการค้นหา"
+    />
+    <button onclick="searchMembers()">ค้นหา</button>
+
+    <h2>ผลการค้นหา:</h2>
+    <div id="results"></div>
+
+    <script>
+      async function searchMembers() {
+        const query = document.getElementById("searchInput").value.trim();
+
+        try {
+          // หากไม่มีคำค้น ให้ส่งค่าเป็น query ว่าง
+          const response = await fetch(
+            `search.php?query=${encodeURIComponent(query)}`
+          );
+          if (!response.ok) {
+            throw new Error(
+              `Network response was not ok: ${response.statusText}`
+            );
+          }
+
+          const members = await response.json();
+          displayResults(members);
+        } catch (error) {
+          console.error("มีข้อผิดพลาดในการค้นหา:", error);
+          alert("เกิดข้อผิดพลาดในการค้นหา");
+        }
+      }
+
+      function displayResults(members) {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = ""; // เคลียร์ผลลัพธ์ก่อนหน้า
+
+        if (members.length === 0) {
+          resultsDiv.innerHTML = "<p>ไม่พบสมาชิกที่ตรงกับคำค้นหา</p>";
+          return;
+        }
+
+        members.forEach((member) => {
+          const memberDiv = document.createElement("div");
+          memberDiv.className = "member";
+
+          // สร้างแท็ก <img> เพื่อแสดงรูปภาพ
+          const img = document.createElement("img");
+          img.src = member.image_path
+            ? member.image_path
+            : "default.png"; // ตรวจสอบว่า image_path มีค่าหรือไม่
+          img.alt = member.username;
+          img.width = 100; // ตั้งขนาดของรูปภาพ
+          img.height = 100;
+
+          const name = document.createElement("div");
+          name.className = "member-name";
+          name.textContent = `ชื่อสมาชิก: ${member.username}`;
+
+          memberDiv.appendChild(img); // เพิ่มแท็ก <img> ใน div
+          memberDiv.appendChild(name); // เพิ่มชื่อผู้ใช้ใน div
+          resultsDiv.appendChild(memberDiv); // แสดงผลลัพธ์
+        });
+      }
+    </script>
+  </body>
+</html>

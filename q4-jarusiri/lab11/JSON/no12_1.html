@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายชื่อโรงพยาบาลเอกชนในกรุงเทพฯ</title>
+    <style>
+        h2 { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>รายชื่อโรงพยาบาลเอกชนในกรุงเทพฯ</h1>
+
+    <h2>โรงพยาบาลขนาดใหญ่</h2>
+    <ul id="large-hospitals"></ul>
+
+    <h2>โรงพยาบาลขนาดกลาง</h2>
+    <ul id="medium-hospitals"></ul>
+
+    <h2>โรงพยาบาลขนาดเล็ก</h2>
+    <ul id="small-hospitals"></ul>
+
+    <script>
+        async function fetchHospitalData() {
+            try {
+                // ดึงข้อมูลจาก URL ที่ให้มา
+                let response = await fetch('http://202.44.40.193/~aws/JSON/priv_hos.json');
+                let data = await response.json(); // แปลงข้อมูลเป็น JSON
+
+                // ดึง element ที่จะใช้แสดงผลตามประเภทโรงพยาบาล
+                const largeHospitals = document.getElementById('large-hospitals');
+                const mediumHospitals = document.getElementById('medium-hospitals');
+                const smallHospitals = document.getElementById('small-hospitals');
+
+                // วนลูปข้อมูลและจัดประเภทโรงพยาบาล
+                data.features.forEach(hospital => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>ชื่อโรงพยาบาล:</strong> ${hospital.properties.name} <br>
+                        <strong>จำนวนเตียง:</strong> ${hospital.properties.num_bed} เตียง
+                    `;
+
+                    // จัดประเภทตามจำนวนเตียง
+                    const numBeds = hospital.properties.num_bed;
+                    if (numBeds >= 91) {
+                        largeHospitals.appendChild(li);
+                    } else if (numBeds >= 31) {
+                        mediumHospitals.appendChild(li);
+                    } else {
+                        smallHospitals.appendChild(li);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching hospital data:', error);
+            }
+        }
+
+        // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลเมื่อเปิดหน้าเว็บ
+        fetchHospitalData();
+    </script>
+</body>
+</html>
